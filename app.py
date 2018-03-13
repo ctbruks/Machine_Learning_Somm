@@ -133,5 +133,5 @@ while count<5:
         print(out)
         count +=1
     except:
-        time.sleep(900)
+        time.sleep(5)
     #print(since_id_)
