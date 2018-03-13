@@ -5,3 +5,4 @@ botocore==1.9.6
 pandas==0.20.1
 numpy==1.12.1
 scikit_learn==0.19.1
+tensorflow==1.0.1
