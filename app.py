@@ -26,7 +26,7 @@ from keras.models import load_model
     # if e.response['Error']['Code'] == "404":
         # print("The object does not exist.")
     # else:
-        j# raise
+        # raise
 
 # Twitter API Keys
 consumer_key = "AoUHxKdOO6aein5z81cdCDZxs"
@@ -133,5 +133,5 @@ while count<5:
         print(out)
         count +=1
     except:
-        time.sleep(1)
+        time.sleep(900)
     #print(since_id_)
