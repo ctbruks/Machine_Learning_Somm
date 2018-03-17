@@ -134,5 +134,5 @@ while runner == True:
         print(out)
         count +=1
     except:
-        time.sleep(60)
+        time.sleep(1)
     #print(since_id_)
