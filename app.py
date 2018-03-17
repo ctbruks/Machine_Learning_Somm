@@ -43,7 +43,7 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 
 def get_mentions(last_id, wine_description):
-    mentions = api.mentions_timeline(since_id = last_id, count=1, result_type="recent")
+    mentions = api.mentions_timeline(since_id = last_id, count=10, result_type="recent")
     last_id = mentions[0]['id']
     for mention in mentions:
         wine_description = mention['text']
@@ -120,7 +120,8 @@ def tweetBack (out_tweets, target):
 last_id = None
 wine_description = None
 count = 0
-while count<5:
+runner = True
+while runner == True:
     try:
         print("before get mentions")
         last_id, wine_description, target_user = get_mentions(last_id, wine_description)
@@ -133,5 +134,5 @@ while count<5:
         print(out)
         count +=1
     except:
-        time.sleep(5)
+        time.sleep(60)
     #print(since_id_)
