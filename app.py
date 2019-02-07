@@ -15,18 +15,18 @@ from sklearn.externals import joblib
 from keras.models import load_model
 
 # import the model from AWS
-BUCKET_NAME = 'mlsomm' # replace with your bucket name
-KEY = 'ML_Somm.h5' # replace with your object key
+# BUCKET_NAME = 'mlsomm' # replace with your bucket name
+# KEY = 'ML_Somm.h5' # replace with your object key
 
-s3 = boto3.resource('s3')
+# s3 = boto3.resource('s3')
 
-try:
-    s3.Bucket(BUCKET_NAME).download_file(KEY, 'somm_model.h5')
-except botocore.exceptions.ClientError as e:
-    if e.response['Error']['Code'] == "404":
-        print("The object does not exist.")
-    else:
-        raise
+# try:
+    # s3.Bucket(BUCKET_NAME).download_file(KEY, 'somm_model.h5')
+# except botocore.exceptions.ClientError as e:
+    # if e.response['Error']['Code'] == "404":
+        # print("The object does not exist.")
+    # else:
+        # raise
 
 # Twitter API Keys
 consumer_key = "AoUHxKdOO6aein5z81cdCDZxs"
@@ -43,7 +43,7 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 
 def get_mentions(last_id, wine_description):
-    mentions = api.mentions_timeline(since_id = last_id, count=1, result_type="recent")
+    mentions = api.mentions_timeline(since_id = last_id, count=10, result_type="recent")
     last_id = mentions[0]['id']
     for mention in mentions:
         wine_description = mention['text']
@@ -120,7 +120,8 @@ def tweetBack (out_tweets, target):
 last_id = None
 wine_description = None
 count = 0
-while count<5:
+runner = True
+while runner == True:
     try:
         print("before get mentions")
         last_id, wine_description, target_user = get_mentions(last_id, wine_description)
